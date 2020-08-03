@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 #include <vector>
 #include <regex>
@@ -7,8 +6,6 @@ using namespace std;
 
 bool solution(vector<string> phone_book) 
 {
-    bool answer = true;
-    
     for(int i = 0; i<phone_book.size(); i++) 
     {
         regex search_text{"^"+phone_book[i]+"*"};
@@ -22,12 +19,10 @@ bool solution(vector<string> phone_book)
             
             if(regex_search(phone_book[j], search_text))
             {
-                answer = false;
-                goto FOR_OUT;
+                return false;
             }
         }
     }
-    FOR_OUT:
     
-    return answer;
+    return true;
 }
