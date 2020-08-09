@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <vector>
 #include <regex>
@@ -8,16 +9,12 @@ bool solution(vector<string> phone_book)
 {
     for(int i = 0; i<phone_book.size(); i++) 
     {
-        regex search_text{"^"+phone_book[i]+"*"};
+        auto search_text = phone_book[i];
         
         for(int j = 0; j<phone_book.size(); j++)
         {
-            if(i==j)
-            {
-                continue;
-            }
-            
-            if(regex_search(phone_book[j], search_text))
+            //접두사 여부 확인
+            if(i!=j && phone_book[j].substr(0, search_text.size())==search_text)
             {
                 return false;
             }
