@@ -1,19 +1,12 @@
 function solution(numbers) {
-    return numbers.map(e=>String(e)).sort(
+    return numbers.map(String).sort(
         (l, r)=>{
-            let left = l;
-            while(left.length<4){
-                left+=l;
-            }
-            left = left.substring(0, 4);
+            let left = l.repeat(4);
+            let right = r.repeat(4);
             
-            let right = r;
-            while(right.length<4){
-                right+=r;
-            }
-            right = right.substring(0, 4);
-            
-            return left.localeCompare(right);
+            if(left < right) return -1;
+            if(left > right) return 1;
+            return 0;
         }
     ).reverse().reduce((acc, e)=>acc+e, '');
 }
