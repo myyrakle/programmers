@@ -1,12 +1,18 @@
 function solution(numbers) {
-    return numbers.map(String).sort(
+     let answer = numbers.map(String).sort(
         (l, r)=>{
-            let left = l.repeat(4);
-            let right = r.repeat(4);
-            
+            let left = l + r;
+            let right = r + l;
+
             if(left < right) return -1;
             if(left > right) return 1;
             return 0;
         }
     ).reverse().reduce((acc, e)=>acc+e, '');
+    
+    if(answer.split('').every(e=>e==='0')){
+        return '0';
+    }
+    
+    return answer
 }
