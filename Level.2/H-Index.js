@@ -1,20 +1,13 @@
 function solution(citations) {
-    const sorted = citations.sort((l,r)=>l-r);
+    let result = citations.length;
+    let done = false;
     
-    let prev = null;
-    for(let i = sorted.length-1; i!=0; i--){
-        if(sorted[i]===sorted[i-1]){
-            continue;
+    citations.sort((l,r)=>r-l).forEach((e, i)=>{
+        if(e<=i && !done) {
+            result = i;
+            done = true;
         }
-        
-        if(
-            sorted[i]<=(sorted.length-i)
-            &&
-            sorted[i]>=(i-0)
-        ){
-           return sorted[i];
-        }
-    }
+    });
     
-    return 0;
+    return result;
 }
